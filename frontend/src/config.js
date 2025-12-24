@@ -2,7 +2,7 @@
 // This file centralizes API URL configuration for different environments
 
 // Production API URL (Render deployment)
-const PRODUCTION_API_URL = "https://fastapi-react-app-1.onrender.com";
+const PRODUCTION_API_URL = "https://fastapi-react-app-0190.onrender.com";
 
 // Development API URL (local backend)
 const DEVELOPMENT_API_URL = "http://localhost:8000";
