@@ -11,6 +11,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",  # Local development
         "http://127.0.0.1:3000",
+        "https://fastapi-react-app-1.onrender.com", # Deployed Frontend
+        "*", # Allow all origins (for flexibility)
     ],
     allow_credentials=True,
     allow_methods=["*"],
