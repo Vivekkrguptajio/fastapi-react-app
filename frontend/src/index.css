@@ -387,3 +387,189 @@ body {
   fill: var(--bg-tertiary);
   stroke: var(--primary);
 }
+
+/* ============================================ */
+/* MOBILE OPTIMIZATION */
+/* ============================================ */
+
+/* Tablet and Mobile */
+@media (max-width: 768px) {
+
+  /* Increase touch targets for nodes */
+  .node-delete-btn,
+  .node-lock-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .node-title {
+    font-size: 13px;
+  }
+
+  .node-field {
+    font-size: 11px;
+  }
+
+  .node-field input,
+  .node-field select,
+  .node-field textarea {
+    font-size: 11px;
+    padding: 10px;
+    min-height: 44px;
+    /* Touch-friendly */
+  }
+
+  .node-field textarea {
+    min-height: 80px;
+  }
+
+  /* Larger handles for touch */
+  .react-flow__handle {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .react-flow__handle:hover {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* Optimize base node sizing */
+  .base-node {
+    padding: 12px;
+    min-width: 180px;
+  }
+
+  /* Reduce edge stroke for cleaner mobile view */
+  .react-flow__edge-path {
+    stroke-width: 2;
+  }
+
+  .react-flow__edge-path:hover {
+    stroke-width: 3;
+  }
+
+  /* Hide edge delete hint on mobile (takes up space) */
+  .react-flow__edge.selected::after {
+    display: none;
+  }
+
+  /* Optimize controls for mobile */
+  .react-flow__controls {
+    bottom: 80px;
+    /* Move up to avoid FAB */
+  }
+
+  .react-flow__controls-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Optimize minimap for mobile */
+  .react-flow__minimap {
+    width: 120px;
+    height: 80px;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+
+  /* Further optimize for small screens */
+  .base-node {
+    padding: 10px;
+    min-width: 160px;
+  }
+
+  .node-delete-btn,
+  .node-lock-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .node-title {
+    font-size: 12px;
+  }
+
+  .node-field {
+    font-size: 10px;
+  }
+
+  .node-field input,
+  .node-field select,
+  .node-field textarea {
+    font-size: 10px;
+    padding: 12px;
+    /* Larger touch target */
+  }
+
+  /* Even larger handles for small screens */
+  .react-flow__handle {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .react-flow__handle:hover {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  /* Smaller controls */
+  .react-flow__controls-button {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  /* Smaller minimap */
+  .react-flow__minimap {
+    width: 100px;
+    height: 60px;
+  }
+
+  .variables-info {
+    font-size: 9px;
+    padding: 6px;
+  }
+}
+
+/* Landscape Mobile - Optimize for horizontal space */
+@media (max-width: 768px) and (orientation: landscape) {
+  .react-flow__controls {
+    bottom: 60px;
+    right: 80px;
+    /* Move left to avoid FAB */
+  }
+
+  .react-flow__minimap {
+    bottom: 60px;
+  }
+}
+
+/* Touch-specific optimizations */
+@media (hover: none) and (pointer: coarse) {
+
+  /* Disable hover effects on touch devices */
+  .base-node:hover {
+    transform: none;
+  }
+
+  .node-delete-btn:hover,
+  .node-lock-btn:hover {
+    transform: none;
+  }
+
+  /* Make all interactive elements easier to tap */
+  .node-delete-btn,
+  .node-lock-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .react-flow__handle {
+    width: 22px !important;
+    height: 22px !important;
+  }
+}
