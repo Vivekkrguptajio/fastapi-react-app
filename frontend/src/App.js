@@ -27,11 +27,30 @@ function App() {
     setIsToolbarVisible(!isToolbarVisible);
   };
 
+  const handleNodeDragStart = () => {
+    if (isMobile) {
+      setTimeout(() => {
+        setIsToolbarVisible(false);
+      }, 0);
+    }
+  };
+
+  const handleNodeDragEnd = () => {
+    if (isMobile) {
+      setTimeout(() => {
+        setIsToolbarVisible(true);
+      }, 0);
+    }
+  };
+
   return (
     <div className={`app-container ${isMobile ? 'mobile' : 'desktop'}`}>
       {/* Left Sidebar */}
       <div className={`left-sidebar ${isToolbarVisible ? 'visible' : 'hidden'}`}>
-        <PipelineToolbar />
+        <PipelineToolbar
+          onNodeDragStart={handleNodeDragStart}
+          onNodeDragEnd={handleNodeDragEnd}
+        />
         <SubmitButton />
       </div>
 
