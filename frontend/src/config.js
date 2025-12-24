@@ -1,5 +1,8 @@
-// API Configuration
-// This file centralizes API URL configuration for local development
+// Backend API URL Configuration
+// Toggle text to swap between Deployment (Render) and Localhost
 
-// Local backend API URL
-export const API_URL = "http://localhost:8000";
+// 🚀 DEPLOYED BACKEND (Render)
+export const API_URL = "https://fastapi-react-app-6ke5.onrender.com";
+
+// 🏠 LOCALHOST (Uncomment to use for local backend)
+// export const API_URL = "http://localhost:8000";

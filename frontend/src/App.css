@@ -11,8 +11,8 @@
 
 /* Left Sidebar */
 .left-sidebar {
-    width: 320px;
-    min-width: 320px;
+    width: 260px;
+    min-width: 260px;
     max-width: 400px;
     height: 100vh;
     background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
@@ -53,7 +53,8 @@
 
 /* Floating Action Button (FAB) for mobile toolbar toggle */
 .toolbar-toggle-fab {
-    display: none; /* Hidden on desktop */
+    display: none;
+    /* Hidden on desktop */
 }
 
 /* Mobile Styles */
@@ -102,8 +103,8 @@
         align-items: center;
         justify-content: center;
         position: fixed;
-        bottom: 20px;
-        right: 20px;
+        top: 20px;
+        left: 20px;
         width: 56px;
         height: 56px;
         border-radius: 50%;
@@ -139,8 +140,8 @@
         width: 48px;
         height: 48px;
         font-size: 20px;
-        bottom: 16px;
-        right: 16px;
+        top: 16px;
+        left: 16px;
     }
 }
 
