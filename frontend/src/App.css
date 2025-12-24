@@ -50,21 +50,104 @@
 }
 
 /* Responsive Design */
+
+/* Floating Action Button (FAB) for mobile toolbar toggle */
+.toolbar-toggle-fab {
+    display: none; /* Hidden on desktop */
+}
+
+/* Mobile Styles */
 @media (max-width: 768px) {
     .app-container {
         flex-direction: column;
+        position: relative;
     }
 
     .left-sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
         width: 100%;
         max-width: 100%;
-        height: auto;
-        max-height: 40vh;
+        height: 70vh;
+        max-height: 70vh;
         border-right: none;
-        border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+        border-top: 2px solid rgba(99, 102, 241, 0.5);
+        z-index: 100;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .left-sidebar.hidden {
+        transform: translateY(100%);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .left-sidebar.visible {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
     }
 
     .right-canvas {
-        height: 60vh;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    /* Floating Action Button */
+    .toolbar-toggle-fab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        border: none;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.5);
+        z-index: 101;
+        transition: all 0.3s ease;
+    }
+
+    .toolbar-toggle-fab:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.7);
+    }
+
+    .toolbar-toggle-fab:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .left-sidebar {
+        height: 75vh;
+        max-height: 75vh;
+    }
+
+    .toolbar-toggle-fab {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+        bottom: 16px;
+        right: 16px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .left-sidebar {
+        height: 85vh;
+        max-height: 85vh;
     }
 }

@@ -72,3 +72,59 @@
     cursor: grabbing;
     transform: scale(0.95);
 }
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .toolbar-container {
+        padding: var(--spacing-sm);
+    }
+
+    .toolbar-title {
+        font-size: 20px;
+    }
+
+    .toolbar-subtitle {
+        font-size: 12px;
+    }
+
+    .section-title {
+        font-size: 10px;
+        margin-bottom: 6px;
+    }
+
+    .nodes-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xs);
+    }
+
+    .draggable-node {
+        padding: 10px;
+        font-size: 12px;
+        min-height: 44px;
+        /* Touch-friendly */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .toolbar-title {
+        font-size: 18px;
+    }
+
+    .toolbar-subtitle {
+        font-size: 11px;
+    }
+
+    .nodes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .draggable-node {
+        font-size: 11px;
+        padding: 12px;
+    }
+}

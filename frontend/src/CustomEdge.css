@@ -38,3 +38,25 @@
 .edge-button-wrapper {
     z-index: 1000;
 }
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .edge-delete-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+
+    .edge-delete-btn:hover {
+        transform: scale(1.2);
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .edge-delete-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}

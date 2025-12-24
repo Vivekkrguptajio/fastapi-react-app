@@ -240,3 +240,115 @@
     color: var(--text-secondary);
     font-size: 14px;
 }
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-header {
+        padding: var(--spacing-md);
+    }
+
+    .modal-header h2 {
+        font-size: 18px;
+    }
+
+    .close-button {
+        width: 40px;
+        height: 40px;
+        font-size: 28px;
+    }
+
+    .modal-body {
+        padding: var(--spacing-md);
+    }
+
+    .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .result-icon {
+        font-size: 28px;
+    }
+
+    .result-info {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .result-label {
+        font-size: 13px;
+    }
+
+    .result-value {
+        font-size: 18px;
+    }
+
+    .modal-footer {
+        padding: var(--spacing-md);
+    }
+
+    .modal-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 15px;
+        min-height: 48px;
+    }
+
+    .empty-icon,
+    .error-icon {
+        font-size: 48px;
+    }
+
+    .empty-message h3,
+    .error-message h3 {
+        font-size: 18px;
+    }
+
+    .empty-message p,
+    .error-message p {
+        font-size: 13px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+        border: none;
+    }
+
+    .modal-header h2 {
+        font-size: 16px;
+    }
+
+    .close-button {
+        width: 44px;
+        height: 44px;
+        font-size: 32px;
+    }
+
+    .result-icon {
+        font-size: 24px;
+    }
+
+    .result-value {
+        font-size: 16px;
+    }
+
+    .modal-button {
+        min-height: 52px;
+    }
+}

@@ -101,3 +101,33 @@
         transform: translateY(-5px);
     }
 }
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .submit-container {
+        padding: var(--spacing-sm);
+        position: sticky;
+        bottom: 0;
+        background: linear-gradient(180deg, transparent 0%, var(--bg-secondary) 20%);
+    }
+
+    .submit-button {
+        padding: 12px var(--spacing-md);
+        font-size: 15px;
+        min-height: 48px;
+        /* Touch-friendly */
+    }
+
+    .button-icon {
+        font-size: 18px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .submit-button {
+        padding: 14px var(--spacing-md);
+        font-size: 14px;
+        min-height: 52px;
+    }
+}
