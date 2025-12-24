@@ -1,0 +1,389 @@
+/* index.css */
+/* Modern styling for VectorShift Pipeline Builder */
+
+:root {
+  /* Color Palette */
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-light: #818cf8;
+  --secondary: #8b5cf6;
+  --accent: #ec4899;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  /* Neutrals */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Borders & Shadows */
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, #1a1f3a 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* Base Node Styling */
+.base-node {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  color: var(--text-primary);
+}
+
+.base-node:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.node-header {
+  margin-bottom: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.node-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.node-delete-btn,
+.node-lock-btn {
+  background: rgba(239, 68, 68, 0.9);
+  border: 1px solid white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  transition: all 0.2s ease;
+  opacity: 1;
+}
+
+.node-lock-btn {
+  background: rgba(99, 102, 241, 0.9);
+}
+
+.node-lock-btn.locked {
+  background: rgba(245, 158, 11, 0.9);
+}
+
+.node-delete-btn:hover {
+  background: rgba(220, 38, 38, 1);
+  transform: scale(1.2);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.6);
+}
+
+.node-lock-btn:hover {
+  background: rgba(79, 70, 229, 1);
+  transform: scale(1.2);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.6);
+}
+
+.node-lock-btn.locked:hover {
+  background: rgba(217, 119, 6, 1);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.6);
+}
+
+.node-delete-btn:active,
+.node-lock-btn:active {
+  transform: scale(1);
+}
+
+.node-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--primary-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.node-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.node-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.node-field input,
+.node-field select,
+.node-field textarea {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.node-field input:focus,
+.node-field select:focus,
+.node-field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.node-field textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.variables-info {
+  font-size: 10px;
+  color: var(--text-muted);
+  padding: var(--spacing-xs);
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: var(--border-radius);
+  margin-top: var(--spacing-xs);
+}
+
+/* Node Type Specific Colors */
+.input-node {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.input-node:hover {
+  border-color: var(--success);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.output-node {
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.output-node:hover {
+  border-color: var(--danger);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+.llm-node {
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.llm-node:hover {
+  border-color: var(--secondary);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.text-node {
+  border-color: rgba(236, 72, 153, 0.4);
+}
+
+.text-node:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+}
+
+.api-node {
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.api-node:hover {
+  border-color: var(--warning);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.database-node {
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.database-node:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.transform-node {
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+.transform-node:hover {
+  border-color: #a855f7;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.conditional-node {
+  border-color: rgba(234, 179, 8, 0.4);
+}
+
+.conditional-node:hover {
+  border-color: #eab308;
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
+}
+
+.loop-node {
+  border-color: rgba(20, 184, 166, 0.4);
+}
+
+.loop-node:hover {
+  border-color: #14b8a6;
+  box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
+}
+
+/* React Flow Overrides */
+.react-flow {
+  background: var(--bg-primary);
+}
+
+.react-flow__node {
+  cursor: grab;
+}
+
+.react-flow__node:active {
+  cursor: grabbing;
+}
+
+.react-flow__handle {
+  width: 12px !important;
+  height: 12px !important;
+  background: var(--primary) !important;
+  border: 2px solid white !important;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.react-flow__handle:hover {
+  width: 16px !important;
+  height: 16px !important;
+  background: var(--accent) !important;
+  box-shadow: 0 0 12px var(--accent) !important;
+  transform: scale(1.1);
+  border-color: white !important;
+}
+
+.react-flow__edge-path {
+  stroke: var(--primary);
+  stroke-width: 3;
+  cursor: pointer;
+}
+
+.react-flow__edge-path:hover {
+  stroke: var(--accent);
+  stroke-width: 4;
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--danger);
+  stroke-width: 4;
+  filter: drop-shadow(0 0 8px var(--danger));
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:focus .react-flow__edge-path,
+.react-flow__edge:focus-visible .react-flow__edge-path {
+  stroke: var(--danger);
+  stroke-width: 4;
+}
+
+/* Add delete hint text */
+.react-flow__edge.selected::after {
+  content: 'Press Delete/Backspace to remove';
+  position: absolute;
+  background: var(--danger);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+
+.react-flow__controls {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+}
+
+.react-flow__controls-button {
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--primary);
+}
+
+.react-flow__minimap {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+}
+
+.react-flow__minimap-mask {
+  fill: rgba(99, 102, 241, 0.2);
+}
+
+.react-flow__minimap-node {
+  fill: var(--bg-tertiary);
+  stroke: var(--primary);
+}

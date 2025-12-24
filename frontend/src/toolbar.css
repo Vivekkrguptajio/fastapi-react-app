@@ -1,0 +1,74 @@
+/* toolbar.css */
+/* Styling for the pipeline toolbar */
+
+.toolbar-container {
+    background: transparent;
+    padding: var(--spacing-md);
+    flex: 1;
+    overflow-y: auto;
+}
+
+.toolbar-header {
+    margin-bottom: var(--spacing-md);
+}
+
+.toolbar-title {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--spacing-xs);
+}
+
+.toolbar-subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.toolbar-section {
+    margin-bottom: var(--spacing-md);
+}
+
+.section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.nodes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.draggable-node {
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, rgba(99, 102, 241, 0.1) 100%);
+    border: 2px solid rgba(99, 102, 241, 0.3);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    cursor: grab;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--text-primary);
+    user-select: none;
+    width: 100%;
+}
+
+.draggable-node:hover {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.draggable-node:active {
+    cursor: grabbing;
+    transform: scale(0.95);
+}

@@ -1,0 +1,70 @@
+/* App.css */
+/* Layout for sidebar and canvas */
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+
+/* Left Sidebar */
+.left-sidebar {
+    width: 320px;
+    min-width: 320px;
+    max-width: 400px;
+    height: 100vh;
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-right: 2px solid rgba(99, 102, 241, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Scrollbar styling for sidebar */
+.left-sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.left-sidebar::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+.left-sidebar::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+.left-sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-light);
+}
+
+/* Right Canvas */
+.right-canvas {
+    flex: 1;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .left-sidebar {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 40vh;
+        border-right: none;
+        border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .right-canvas {
+        height: 60vh;
+    }
+}
