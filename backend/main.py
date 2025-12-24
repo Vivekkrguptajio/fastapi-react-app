@@ -5,14 +5,11 @@ from typing import List, Dict, Any
 
 app = FastAPI()
 
-# Enable CORS for frontend communication
-# Support both local development and production deployment
+# Enable CORS for frontend communication (local development only)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",  # Local development
-        "https://fastapi-react-app-6ke5.onrender.com",  # Production (Render)
-        "*"  # Allow all origins (remove this in production for better security)
     ],
     allow_credentials=True,
     allow_methods=["*"],

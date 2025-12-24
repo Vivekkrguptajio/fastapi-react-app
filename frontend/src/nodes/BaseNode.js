@@ -128,8 +128,6 @@ export const BaseNode = ({ id, data, config }) => {
     };
 
     const defaultStyle = {
-        minWidth: 200,
-        minHeight: 80,
         ...style
     };
 

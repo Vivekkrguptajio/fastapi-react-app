@@ -123,6 +123,9 @@ export const PipelineUI = () => {
           deleteKeyCode={['Backspace', 'Delete']}
           edgesUpdatable={true}
           edgesFocusable={true}
+          nodesDraggable={true}
+          nodesConnectable={true}
+          elementsSelectable={true}
         >
           <Background color="#aaa" gap={gridSize} />
           <Controls />
