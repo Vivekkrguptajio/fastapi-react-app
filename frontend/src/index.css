@@ -179,13 +179,23 @@ body {
   min-height: 60px;
 }
 
-.variables-info {
+.variables-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-xs);
+  border-top: 1px solid rgba(167, 139, 250, 0.1);
+}
+
+.variable-badge {
   font-size: 10px;
-  color: var(--text-muted);
-  padding: var(--spacing-xs);
-  background: rgba(167, 139, 250, 0.15);
-  border-radius: var(--border-radius);
-  margin-top: var(--spacing-xs);
+  color: var(--primary-light);
+  padding: 2px 6px;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12px;
+  font-family: monospace;
 }
 
 /* Node Type Specific Colors */

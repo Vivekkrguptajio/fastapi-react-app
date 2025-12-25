@@ -98,25 +98,30 @@ export const TextNode = ({ id, data }) => {
 
       {/* Node content */}
       <div className="node-content">
-        <label className="node-field">
-          Text:
+        <div className="node-field">
           <textarea
             ref={textareaRef}
             value={currText}
             onChange={handleTextChange}
-            placeholder="Enter text with {{variables}}"
+            placeholder="Type specific text or use {{variable}}..."
+            className="nodrag text-node-active"
             rows={1}
             disabled={isLocked}
             style={{
-              minHeight: '40px',
+              minHeight: '60px',
               resize: 'none',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              fontFamily: 'monospace',
+              fontSize: '13px',
+              lineHeight: '1.5'
             }}
           />
-        </label>
+        </div>
         {variables.length > 0 && (
-          <div className="variables-info">
-            Variables: {variables.join(', ')}
+          <div className="variables-container">
+            {variables.map(v => (
+              <span key={v} className="variable-badge">{v}</span>
+            ))}
           </div>
         )}
       </div>
