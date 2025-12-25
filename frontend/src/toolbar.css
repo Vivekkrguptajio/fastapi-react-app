@@ -12,6 +12,31 @@
     margin-bottom: var(--spacing-md);
 }
 
+.toolbar-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.toolbar-btn {
+    background: var(--bg-tertiary);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    color: var(--primary-light);
+    padding: 6px 12px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    flex: 1;
+    transition: all 0.2s ease;
+}
+
+.toolbar-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
 .toolbar-title {
     font-size: 24px;
     font-weight: 700;

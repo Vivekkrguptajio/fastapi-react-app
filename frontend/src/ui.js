@@ -2,7 +2,7 @@
 // Displays the drag-and-drop UI
 // --------------------------------------------------
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import ReactFlow, { Controls, Background, MiniMap, useReactFlow } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
@@ -66,6 +66,56 @@ export const PipelineUI = () => {
     return nodeData;
   }
 
+  const [selectedNodes, setSelectedNodes] = useState([]);
+  const [clipboard, setClipboard] = useState(null);
+
+  // Track selection
+  const onSelectionChange = useCallback(({ nodes }) => {
+    setSelectedNodes(nodes);
+  }, []);
+
+  // Handle Copy/Paste
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const isCtrlOrCmd = event.ctrlKey || event.metaKey;
+
+      if (isCtrlOrCmd && event.key === 'c') {
+        // Copy: Save selected nodes to clipboard
+        if (selectedNodes.length > 0) {
+          setClipboard(selectedNodes);
+        }
+      }
+
+      if (isCtrlOrCmd && event.key === 'v') {
+        // Paste: Create duplicates of clipboard nodes
+        if (clipboard && clipboard.length > 0) {
+          clipboard.forEach((node) => {
+            const newNodeID = getNodeID(node.type);
+            const newNode = {
+              ...node,
+              id: newNodeID,
+              position: {
+                x: node.position.x + 50, // Offset so it's visible
+                y: node.position.y + 50,
+              },
+              data: {
+                ...node.data,
+                id: newNodeID,
+              },
+              selected: true, // Select the new node
+            };
+            addNode(newNode);
+          });
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedNodes, clipboard, addNode, getNodeID]);
+
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
@@ -96,7 +146,7 @@ export const PipelineUI = () => {
         addNode(newNode);
       }
     },
-    [reactFlowInstance]
+    [reactFlowInstance, getNodeID, addNode]
   );
 
   const onDragOver = useCallback((event) => {
@@ -116,6 +166,7 @@ export const PipelineUI = () => {
           onDrop={onDrop}
           onDragOver={onDragOver}
           onInit={setReactFlowInstance}
+          onSelectionChange={onSelectionChange}
           nodeTypes={nodeTypes}
           edgeTypes={edgeTypes}
           proOptions={proOptions}

@@ -7,8 +7,16 @@ import {
   applyEdgeChanges,
   MarkerType,
 } from 'reactflow';
+import dagre from 'dagre';
+import { temporal } from 'zundo';
 
-export const useStore = create((set, get) => ({
+const dagreGraph = new dagre.graphlib.Graph();
+dagreGraph.setDefaultEdgeLabel(() => ({}));
+
+const nodeWidth = 250;
+const nodeHeight = 80;
+
+export const useStore = create(temporal((set, get) => ({
   nodes: [],
   edges: [],
   getNodeID: (type) => {
@@ -51,4 +59,39 @@ export const useStore = create((set, get) => ({
       }),
     });
   },
-}));
+  restorePipeline: (nodes, edges) => {
+    set({ nodes, edges });
+  },
+  layoutNodes: (direction = 'TB') => {
+    const { nodes, edges } = get();
+    dagreGraph.setGraph({ rankdir: direction });
+
+    nodes.forEach((node) => {
+      dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
+    });
+
+    edges.forEach((edge) => {
+      dagreGraph.setEdge(edge.source, edge.target);
+    });
+
+    dagre.layout(dagreGraph);
+
+    const layoutedNodes = nodes.map((node) => {
+      const nodeWithPosition = dagreGraph.node(node.id);
+      node.targetPosition = direction === 'LR' ? 'left' : 'top';
+      node.sourcePosition = direction === 'LR' ? 'right' : 'bottom';
+
+      // We are shifting the dagre node position (anchor=center center) to the top left
+      // so it matches the React Flow node anchor point (top left).
+      return {
+        ...node,
+        position: {
+          x: nodeWithPosition.x - nodeWidth / 2,
+          y: nodeWithPosition.y - nodeHeight / 2,
+        },
+      };
+    });
+
+    set({ nodes: layoutedNodes });
+  },
+})));

@@ -7,12 +7,16 @@ import { shallow } from 'zustand/shallow';
 import './toolbar.css';
 
 const selector = (state) => ({
+    nodes: state.nodes,
+    edges: state.edges,
     addNode: state.addNode,
     getNodeID: state.getNodeID,
+    restorePipeline: state.restorePipeline,
+    layoutNodes: state.layoutNodes,
 });
 
 export const PipelineToolbar = ({ onNodeDragStart, onNodeDragEnd }) => {
-    const { addNode, getNodeID } = useStore(selector, shallow);
+    const { nodes, edges, addNode, getNodeID, restorePipeline, layoutNodes } = useStore(selector, shallow);
 
     const handleNodeClick = (type) => {
         // Create new node data
@@ -35,11 +39,69 @@ export const PipelineToolbar = ({ onNodeDragStart, onNodeDragEnd }) => {
         }
     };
 
+    const handleSavePipeline = () => {
+        const pipelineData = { nodes, edges };
+        const blob = new Blob([JSON.stringify(pipelineData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'pipeline.json';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    };
+
+    const handleLoadPipeline = (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const pipelineData = JSON.parse(e.target.result);
+                if (pipelineData.nodes && pipelineData.edges) {
+                    restorePipeline(pipelineData.nodes, pipelineData.edges);
+                } else {
+                    alert('Invalid pipeline file');
+                }
+            } catch (error) {
+                console.error('Error parsing pipeline file:', error);
+                alert('Error loading pipeline file');
+            }
+        };
+        reader.readAsText(file);
+
+        // Reset input so same file can be selected again
+        event.target.value = '';
+    };
+
     return (
         <div className="toolbar-container">
             <div className="toolbar-header">
                 <h2 className="toolbar-title">Pipeline Builder</h2>
                 <p className="toolbar-subtitle">Drag nodes to the canvas</p>
+
+                {/* Visual Controls */}
+                <div className="toolbar-buttons">
+                    <button className="toolbar-btn" onClick={() => layoutNodes('TB')}>Auto Layout</button>
+                    <button className="toolbar-btn" onClick={() => useStore.temporal.getState().undo()}>Undo</button>
+                    <button className="toolbar-btn" onClick={() => useStore.temporal.getState().redo()}>Redo</button>
+                </div>
+
+                {/* File Controls */}
+                <div style={{ marginTop: '10px', display: 'flex', gap: '8px' }}>
+                    <button className="toolbar-btn" onClick={handleSavePipeline}>Save JSON</button>
+                    <label className="toolbar-btn" style={{ textAlign: 'center' }}>
+                        Load JSON
+                        <input
+                            type="file"
+                            accept=".json"
+                            onChange={handleLoadPipeline}
+                            style={{ display: 'none' }}
+                        />
+                    </label>
+                </div>
             </div>
 
             <div className="toolbar-section">
