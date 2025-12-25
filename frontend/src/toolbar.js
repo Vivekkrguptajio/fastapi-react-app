@@ -82,17 +82,17 @@ export const PipelineToolbar = ({ onNodeDragStart, onNodeDragEnd }) => {
                 <h2 className="toolbar-title">Pipeline Builder</h2>
                 <p className="toolbar-subtitle">Drag nodes to the canvas</p>
 
-                {/* Visual Controls */}
+                {/* Top Row: Actions */}
                 <div className="toolbar-buttons">
                     <button className="toolbar-btn" onClick={() => layoutNodes('TB')}>Auto Layout</button>
                     <button className="toolbar-btn" onClick={() => useStore.temporal.getState().undo()}>Undo</button>
                     <button className="toolbar-btn" onClick={() => useStore.temporal.getState().redo()}>Redo</button>
                 </div>
 
-                {/* File Controls */}
-                <div style={{ marginTop: '10px', display: 'flex', gap: '8px' }}>
+                {/* Second Row: File Operations */}
+                <div className="toolbar-buttons">
                     <button className="toolbar-btn" onClick={handleSavePipeline}>Save JSON</button>
-                    <label className="toolbar-btn" style={{ textAlign: 'center' }}>
+                    <label className="toolbar-btn">
                         Load JSON
                         <input
                             type="file"

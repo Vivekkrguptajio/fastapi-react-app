@@ -2,154 +2,146 @@
 /* Styling for the pipeline toolbar */
 
 .toolbar-container {
-    background: transparent;
-    padding: var(--spacing-md);
-    flex: 1;
+    padding: 12px;
+    /* Reduced from 20px */
+    background: #13131f;
+    /* Dark background matching reference */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    /* Reduced from 20px */
     overflow-y: auto;
 }
 
 .toolbar-header {
-    margin-bottom: var(--spacing-md);
-}
-
-.toolbar-buttons {
     display: flex;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-sm);
-}
-
-.toolbar-btn {
-    background: var(--bg-tertiary);
-    border: 1px solid rgba(167, 139, 250, 0.3);
-    color: var(--primary-light);
-    padding: 6px 12px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 600;
-    flex: 1;
-    transition: all 0.2s ease;
-}
-
-.toolbar-btn:hover {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
+    flex-direction: column;
+    gap: 8px;
+    /* Reduced from 15px */
 }
 
 .toolbar-title {
-    font-size: 24px;
+    font-size: 20px;
+    /* Reduced from 24px */
     font-weight: 700;
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: var(--spacing-xs);
+    color: #d8b4fe;
+    /* Light purple title */
+    margin: 0;
 }
 
 .toolbar-subtitle {
-    color: var(--text-muted);
-    font-size: 14px;
+    color: #94a3b8;
+    font-size: 12px;
+    /* Reduced from 14px */
+    margin-top: -6px;
+    margin-bottom: 2px;
 }
 
+/* Control Buttons Row */
+.toolbar-buttons {
+    display: flex;
+    gap: 6px;
+    /* Reduced from 10px */
+    justify-content: space-between;
+}
+
+.toolbar-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    color: #e2e8f0;
+    padding: 6px 10px;
+    /* Reduced */
+    border-radius: 8px;
+    /* Slightly tighter radius */
+    cursor: pointer;
+    font-size: 11px;
+    /* Reduced from 13px */
+    font-weight: 600;
+    flex: 1;
+    transition: all 0.2s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+}
+
+.toolbar-btn:hover {
+    background: rgba(167, 139, 250, 0.1);
+    border-color: #a78bfa;
+    color: white;
+    transform: translateY(-1px);
+}
+
+.toolbar-btn:active {
+    transform: translateY(0);
+}
+
+/* Section Styling */
 .toolbar-section {
-    margin-bottom: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    /* Reduced from 10px */
 }
 
 .section-title {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-secondary);
+    font-size: 10px;
+    /* Reduced from 12px */
+    font-weight: 700;
+    color: #cbd5e1;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: var(--spacing-sm);
+    margin-top: 4px;
 }
 
+/* Nodes Grid */
 .nodes-grid {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: 8px;
+    /* Reduced from 12px */
 }
 
+/* Draggable Node Button Style */
 .draggable-node {
-    background: linear-gradient(135deg, var(--bg-tertiary) 0%, rgba(99, 102, 241, 0.1) 100%);
-    border: 2px solid rgba(99, 102, 241, 0.3);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-sm);
-    cursor: grab;
-    transition: all 0.3s ease;
-    text-align: center;
-    font-weight: 500;
+    background: rgba(30, 27, 75, 0.5);
+    /* Deep purple bg */
+    border: 1px solid rgba(139, 92, 246, 0.5);
+    /* Purple outline */
+    border-radius: 10px;
+    /* slightly smaller radius */
+    padding: 8px 12px;
+    /* Reduced from 12px 16px */
+    color: #f8fafc;
     font-size: 13px;
-    color: var(--text-primary);
-    user-select: none;
-    width: 100%;
+    /* Reduced from 14px */
+    font-weight: 600;
+    cursor: grab;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    /* Reduced from 48px */
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
 .draggable-node:hover {
-    border-color: var(--primary);
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    background: rgba(139, 92, 246, 0.2);
+    border-color: #a78bfa;
     transform: translateY(-2px);
-    box-shadow: var(--shadow-glow);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
 }
 
 .draggable-node:active {
     cursor: grabbing;
-    transform: scale(0.95);
+    transform: scale(0.98);
 }
 
-/* Mobile Optimization */
-@media (max-width: 768px) {
-    .toolbar-container {
-        padding: var(--spacing-sm);
-    }
-
-    .toolbar-title {
-        font-size: 20px;
-    }
-
-    .toolbar-subtitle {
-        font-size: 12px;
-    }
-
-    .section-title {
-        font-size: 10px;
-        margin-bottom: 6px;
-    }
-
-    .nodes-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-xs);
-    }
-
-    .draggable-node {
-        padding: 10px;
-        font-size: 12px;
-        min-height: 44px;
-        /* Touch-friendly */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-    .toolbar-title {
-        font-size: 18px;
-    }
-
-    .toolbar-subtitle {
-        font-size: 11px;
-    }
-
-    .nodes-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .draggable-node {
-        font-size: 11px;
-        padding: 12px;
-    }
+/* File Upload input hidden logic handled in JS, 
+   styling applied to the label which acts as button */
+label.toolbar-btn {
+    margin: 0;
 }

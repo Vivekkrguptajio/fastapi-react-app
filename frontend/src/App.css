@@ -11,16 +11,20 @@
 
 /* Left Sidebar */
 .left-sidebar {
-    width: 260px;
-    min-width: 260px;
+    width: 220px;
+    /* Reduced from 280px */
+    min-width: 220px;
     max-width: 400px;
     height: 100vh;
-    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-    border-right: 2px solid rgba(99, 102, 241, 0.3);
+    background: #13131f;
+    /* Dark bg */
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    /* Subtle border */
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
+    z-index: 10;
 }
 
 /* Scrollbar styling for sidebar */
