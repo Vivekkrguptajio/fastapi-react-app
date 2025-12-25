@@ -1,11 +1,12 @@
 // BaseNode.js
 // Reusable base component for creating custom nodes
 
-import { useState } from 'react';
-import { Handle, Position, useReactFlow } from 'reactflow';
+import { useState, useEffect } from 'react';
+import { Handle, Position, useReactFlow, useUpdateNodeInternals } from 'reactflow';
 
 export const BaseNode = ({ id, data, config }) => {
     const { deleteElements } = useReactFlow();
+    const updateNodeInternals = useUpdateNodeInternals();
 
     const {
         title,
@@ -15,6 +16,11 @@ export const BaseNode = ({ id, data, config }) => {
         className = '',
         style = {}
     } = config;
+
+    // Update node internals when handles change
+    useEffect(() => {
+        updateNodeInternals(id);
+    }, [handles, dynamicHandles, id, updateNodeInternals]);
 
     // Initialize state for all fields
     const [fieldValues, setFieldValues] = useState(() => {

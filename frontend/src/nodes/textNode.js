@@ -2,10 +2,11 @@
 // Enhanced with dynamic sizing and variable detection
 
 import { useState, useEffect, useRef } from 'react';
-import { Handle, Position, useReactFlow } from 'reactflow';
+import { Handle, Position, useReactFlow, useUpdateNodeInternals } from 'reactflow';
 
 export const TextNode = ({ id, data }) => {
   const { deleteElements } = useReactFlow();
+  const updateNodeInternals = useUpdateNodeInternals();
   const [currText, setCurrText] = useState(data?.text || '{{input}}');
   const [variables, setVariables] = useState([]);
   const [isLocked, setIsLocked] = useState(false);
@@ -24,8 +25,24 @@ export const TextNode = ({ id, data }) => {
       }
     }
 
-    setVariables(matches);
-  }, [currText]);
+    // Only update if variables actually changed to avoid unnecessary re-renders
+    const isDifferent =
+      matches.length !== variables.length ||
+      matches.some((v, i) => v !== variables[i]);
+
+    if (isDifferent) {
+      setVariables(matches);
+    }
+  }, [currText, variables]);
+
+  // Update node internals when variables change or text changes (resizing)
+  useEffect(() => {
+    // Use setTimeout to skip a frame and wait for CSS/DOM layout updates
+    const timer = setTimeout(() => {
+      updateNodeInternals(id);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [variables, currText, id, updateNodeInternals]);
 
   // Auto-resize textarea
   useEffect(() => {
